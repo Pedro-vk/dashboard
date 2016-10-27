@@ -111,9 +111,32 @@ class NodeSelector extends React.Component<Props, State> {
     return (
       <div
         key={node.id}
-        className={`${classes.row} ${isHighlighted ? classes.highlighted : ''}`}
+        className={`${classes.row} ${classes.item} ${isHighlighted ? classes.highlighted : ''}`}
       >
-        {JSON.stringify(node, null, 1)}
+        <div className={classes.json}>
+          {Object.keys(node).map((key) => (
+            <span
+              key={key}
+              className={classes.attribute}
+            >
+              <span
+                className={classes.attributeKey}
+              >
+                {key}
+              </span>
+              { node[key] instanceof Array &&
+                <span
+                  className={classes.object}
+                >
+                  {node[key].length}
+                </span>
+              }
+              { !(node[key] instanceof Array) &&
+                <span>{JSON.stringify(node[key], null, 2)}</span>
+              }
+            </span>
+          ))}
+        </div>
       </div>
     )
   }

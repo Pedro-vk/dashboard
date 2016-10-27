@@ -15,3 +15,52 @@
   width: 100%;
   position: relative;
 }
+
+.item {
+  .json {
+    &:before,
+    &:after {
+      color: $grey3;
+    }
+    &:before {
+      content: '{ ';
+    }
+    &:after {
+      content: ' }';
+    }
+  }
+  .attribute {
+    display: inline;
+    color: $grey4;
+
+    &:after {
+      color: $grey3;
+      content: ', ';
+    }
+    &:last-child:after {
+      content: none;
+    }
+  }
+  .attributeKey {
+    color: $grey5;
+    font-weight: bold;
+
+    &:after {
+      color: $grey3;
+      font-weight: normal;
+      content: ': ';
+    }
+  }
+  .object {
+    background: $green;
+    color: #ffffff;
+    height: 16px;
+    line-height: 17px;
+    padding: 0 6px;
+    border-radius: 4px;
+    font-size: .8em;
+    display: inline-block;
+    margin-right: 2px;
+
+  }
+}
