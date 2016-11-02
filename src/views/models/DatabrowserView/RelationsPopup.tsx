@@ -130,7 +130,30 @@ class RelationsPopup extends React.Component<Props, State> {
                       src={require('assets/new_icons/check.svg')}
                     />
                   </div>
-                  <div>{JSON.stringify(node, null, 2)}</div>
+                  <div className={classes.json}>
+                    {Object.keys(node).map((key) => (
+                      <span
+                        key={key}
+                        className={classes.attribute}
+                      >
+                        <span
+                          className={classes.attributeKey}
+                        >
+                          {key}
+                        </span>
+                        { node[key] instanceof Array &&
+                          <span
+                            className={classes.object}
+                          >
+                            {node[key].length}
+                          </span>
+                        }
+                        { !(node[key] instanceof Array) &&
+                          <span>{JSON.stringify(node[key], null, 2)}</span>
+                        }
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
